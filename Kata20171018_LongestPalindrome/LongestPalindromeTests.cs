@@ -14,7 +14,7 @@ namespace Kata20171018_LongestPalindrome
             var result = kata.GetLongestPalindrome(null);
             Assert.AreEqual(0, result);
         }
-        
+
         [TestMethod]
         public void Input_a_string()
         {
@@ -22,7 +22,7 @@ namespace Kata20171018_LongestPalindrome
             var result = kata.GetLongestPalindrome("a");
             Assert.AreEqual(1, result);
         }
-        
+
         [TestMethod]
         public void Input_ab_string()
         {
@@ -46,6 +46,14 @@ namespace Kata20171018_LongestPalindrome
             var result = kata.GetLongestPalindrome("aab");
             Assert.AreEqual(2, result);
         }
+
+        [TestMethod]
+        public void Input_caab_string()
+        {
+            var kata = new Kata();
+            var result = kata.GetLongestPalindrome("caab");
+            Assert.AreEqual(2, result);
+        }
     }
 
     public class Kata
@@ -63,14 +71,21 @@ namespace Kata20171018_LongestPalindrome
                 return str.Length;
             }
 
-            var s = string.Concat(str.Take(str.Length - 1));
-
-            if (reverseStr.Contains(s))
+            var result = new List<int>();
+            for (var skip = 0; skip < str.Length; skip++)
             {
-                return str.Length - 1;
+                for (var j = 1; j <= str.Length; j++)
+                {
+                    var s = string.Concat(str.Skip(skip).Take(j));
+
+                    if (reverseStr.Contains(s))
+                    {
+                        result.Add(s.Length);
+                    }
+                }
             }
 
-            return 1;
+            return result.Any() ? result.Max() : 1;
         }
     }
 }
