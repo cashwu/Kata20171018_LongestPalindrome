@@ -54,6 +54,14 @@ namespace Kata20171018_LongestPalindrome
             var result = kata.GetLongestPalindrome("caab");
             Assert.AreEqual(2, result);
         }
+        
+        [TestMethod]
+        public void Input_abc0cba1_string()
+        {
+            var kata = new Kata();
+            var result = kata.GetLongestPalindrome("abc0cba1");
+            Assert.AreEqual(7, result);
+        }
     }
 
     public class Kata
