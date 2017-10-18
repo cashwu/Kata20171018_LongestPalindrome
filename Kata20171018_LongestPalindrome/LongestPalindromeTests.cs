@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Kata20171018_LongestPalindrome
@@ -21,6 +22,22 @@ namespace Kata20171018_LongestPalindrome
             var result = kata.GetLongestPalindrome("a");
             Assert.AreEqual(1, result);
         }
+        
+        [TestMethod]
+        public void Input_ab_string()
+        {
+            var kata = new Kata();
+            var result = kata.GetLongestPalindrome("aa");
+            Assert.AreEqual(2, result);
+        }
+
+        [TestMethod]
+        public void Input_aba_string()
+        {
+            var kata = new Kata();
+            var result = kata.GetLongestPalindrome("aba");
+            Assert.AreEqual(3, result);
+        }
     }
 
     public class Kata
@@ -31,6 +48,12 @@ namespace Kata20171018_LongestPalindrome
             {
                 return 0;
             }
+
+            if (s == string.Concat(s.Reverse()))
+            {
+                return s.Length;
+            }
+
             return 1;
         }
     }
