@@ -54,7 +54,7 @@ namespace Kata20171018_LongestPalindrome
             var result = kata.GetLongestPalindrome("caab");
             Assert.AreEqual(2, result);
         }
-        
+
         [TestMethod]
         public void Input_abc0cba1_string()
         {
@@ -91,17 +91,13 @@ namespace Kata20171018_LongestPalindrome
             }
 
             var reverseStr = string.Concat(str.Reverse());
-            if (str == reverseStr)
-            {
-                return str.Length;
-            }
 
             var result = new List<int>();
             for (var skip = 0; skip < str.Length; skip++)
             {
-                for (var j = 1; j <= str.Length; j++)
+                for (var take = 1; take <= str.Length; take++)
                 {
-                    var s = string.Concat(str.Skip(skip).Take(j));
+                    var s = string.Concat(str.Skip(skip).Take(take));
 
                     if (reverseStr.Contains(s))
                     {
